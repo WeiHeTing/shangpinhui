@@ -26,7 +26,7 @@
     <!--头部第二行 搜索区域-->
     <div class="bottom">
       <h1 class="logoArea">
-        <router-link class="logo"  to="/home">
+        <router-link class="logo" to="/home">
           <img src="./images/logo.png" alt="" />
         </router-link>
       </h1>
@@ -38,7 +38,11 @@
             class="input-error input-xxlarge"
             v-model="keyword"
           />
-          <button class="sui-btn btn-xlarge btn-danger" type="button" @click="goSearch">
+          <button
+            class="sui-btn btn-xlarge btn-danger"
+            type="button"
+            @click="goSearch"
+          >
             搜索
           </button>
         </form>
@@ -49,24 +53,22 @@
 
 <script>
 export default {
-    name:'Header',
-    data() {
-      return {
-        keyword:''
+  name: "Header",
+  data() {
+    return {
+      keyword: "",
+    };
+  },
+  methods: {
+    goSearch() {
+      // this.$router.push('/search/'+this.keyword+'?k='+this.keyword.toUpperCase())
+      if(this.$route.query){
+        let location={name:'search',params:{keyword:this.keyword||undefined}}
+        location.query=this.$route.query
+        this.$router.push(location)
       }
     },
-    methods: {
-      goSearch(){
-        // this.$router.push('/search/'+this.keyword+'?k='+this.keyword.toUpperCase())
-        const res=this.$router.push({
-          name:'search',
-          params:{keyword:this.keyword},
-          query:{k:this.keyword.toUpperCase()}},()=>{},(reject)=>{
-            console.log(reject);
-          }
-        )
-      }
-    },
+  },
 };
 </script>
 

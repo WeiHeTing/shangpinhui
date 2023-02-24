@@ -6,6 +6,9 @@ import router from '@/router'
 import TypeNav from '@/components/TypeNav'
 import {reqCategory} from '@/api'
 import store from './store';
+import '@/mock/mockServe'
+//引入swiper样式
+import 'swiper/css/swiper.min.css'
 
 
 reqCategory()
